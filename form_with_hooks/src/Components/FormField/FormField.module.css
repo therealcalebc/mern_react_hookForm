@@ -1,0 +1,20 @@
+div.FormField {
+	width: 100%;
+	margin: 2%;
+	padding: 2%;
+	background-color: lightgrey;
+}
+div.FormField label {
+	width: 25%;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 2rem;
+	color: dimgrey;
+}
+div.FormField input {
+	width: 60%;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 2rem;
+}

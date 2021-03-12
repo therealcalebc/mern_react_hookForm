@@ -1,0 +1,56 @@
+form.HookForm {
+	width: 50%;
+	margin: 2% auto;
+	padding: 2%;
+}
+
+div.FormField {
+	width: 100%;
+	margin: 2%;
+	padding: 2%;
+	background-color: lightgrey;
+}
+div.FormField label {
+	width: 25%;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 2rem;
+	color: dimgrey;
+}
+div.FormField input {
+	width: 60%;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 2rem;
+}
+
+div.FormDataViewer {
+	width: 50%;
+	margin: 2% auto;
+	padding: 2%;
+}
+
+div.FormDataField {
+	width: 100%;
+	margin: 2%;
+	padding: 2%;
+	/* background-color: lightgrey; */
+}
+div.FormDataField label {
+	width: 25%;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 2rem;
+}
+div.FormDataField input:disabled {
+	width: 60%;
+	border: 0;
+	padding: 0 2%;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 2rem;
+	background: transparent;
+	color: black;
+}
