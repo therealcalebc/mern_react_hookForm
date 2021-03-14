@@ -1,165 +1,59 @@
 import React, { useState } from "react";
-// import styles from "./HookForm.module.css";
 import Form from "../Form/Form";
-// import FormField from "../FormField/FormField";
 import FormDataViewer from "../FormDataViewer/FormDataViewer";
 
 const HookForm = (props) => {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
-	const [emailAddress, setEmailAddress] = useState("");
+	const [emailAddr, setEmailAddr] = useState("");
 	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
-	const forIds = [
-		"firstNameInput",
-		"lastNameInput",
-		"emailAddressInput",
-		"passwordInput",
-		"confirmPasswordInput",
-	];
-	const labelTexts = [
-		"First Name:",
-		"Last Name:",
-		"Email:",
-		"Password:",
-		"Confirm Password:",
-	];
-	const inputValues = [
-		firstName,
-		lastName,
-		emailAddress,
-		password,
-		confirmPassword,
-	];
-	const onInputChanges = [
-		setFirstName,
-		setLastName,
-		setEmailAddress,
-		setPassword,
-		setConfirmPassword,
-	];
+	const [passwordConf, setPasswordConf] = useState("");
+
+	const formFieldProps = {
+		firstNameProps: {
+			forId: "firstNameInput",
+			labelText: "First Name",
+			inputValue: firstName,
+			setInputValue: setFirstName,
+		},
+		lastNameProps: {
+			forId: "lastNameInput",
+			labelText: "Last Name",
+			inputValue: lastName,
+			setInputValue: setLastName,
+		},
+		emailAddrProps: {
+			forId: "emailAddrInput",
+			labelText: "Email",
+			inputValue: emailAddr,
+			setInputValue: setEmailAddr,
+		},
+		passwordProps: {
+			forId: "passwordInput",
+			labelText: "Password",
+			inputValue: password,
+			setInputValue: setPassword,
+		},
+		passwordConfProps: {
+			forId: "passwordConfInput",
+			labelText: "Confirm Password",
+			inputValue: passwordConf,
+			setInputValue: setPasswordConf,
+		},
+	};
 
 	return (
 		<>
-			<Form
-				forIds={forIds}
-				labelTexts={labelTexts}
-				inputValues={inputValues}
-				onInputChanges={onInputChanges}
-			/>
+			<Form fields={formFieldProps} />
 			<FormDataViewer
 				firstName={firstName}
 				lastName={lastName}
-				emailAddress={emailAddress}
+				emailAddr={emailAddr}
 				password={password}
-				confirmPassword={confirmPassword}
+				passwordConf={passwordConf}
 			/>
 		</>
 	);
 };
 
 export default HookForm;
-
-// <form className={styles.HookForm}>
-// 	<FormField
-// 		forId='firstNameInput'
-// 		labelText='First Name:'
-// 		onInputChange={(e) => setFirstName(e.target.value)}
-// 		inputValue={firstName}
-// 	/>
-// 	<FormField
-// 		forId='lastNameInput'
-// 		labelText='Last Name:'
-// 		onInputChange={(e) => setLastName(e.target.value)}
-// 		inputValue={lastName}
-// 	/>
-// 	<FormField
-// 		forId='emailAddressInput'
-// 		labelText='Email:'
-// 		onInputChange={(e) => setEmailAddress(e.target.value)}
-// 		inputValue={emailAddress}
-// 	/>
-// 	<FormField
-// 		forId='passwordInput'
-// 		labelText='Password:'
-// 		onInputChange={(e) => setPassword(e.target.value)}
-// 		inputValue={password}
-// 	/>
-// 	<FormField
-// 		forId='confirmPasswordInput'
-// 		labelText='Confirm Password:'
-// 		onInputChange={(e) => setConfirmPassword(e.target.value)}
-// 		inputValue={confirmPassword}
-// 	/>
-// </form>
-
-// <div className={styles.FormField}>
-// 	<label htmlFor='firstNameInput'>First Name: </label>
-// 	<input
-// 		type='text'
-// 		id='firstNameInput'
-// 		onChange={(e) => setFirstName(e.target.value)}
-// 		value={firstName}
-// 	/>
-// </div>
-// <div className={styles.FormField}>
-// 	<label htmlFor='lastNameInput'>Last Name: </label>
-// 	<input
-// 		type='text'
-// 		id='lastNameInput'
-// 		onChange={(e) => setLastName(e.target.value)}
-// 		value={lastName}
-// 	/>
-// </div>
-// <div className={styles.FormField}>
-// 	<label htmlFor='emailAddressInput'>Email: </label>
-// 	<input
-// 		type='text'
-// 		id='emailAddressInput'
-// 		onChange={(e) => setEmailAddress(e.target.value)}
-// 		value={emailAddress}
-// 	/>
-// </div>
-// <div className={styles.FormField}>
-// 	<label htmlFor='passwordInput'>Password: </label>
-// 	<input
-// 		type='password'
-// 		id='passwordInput'
-// 		onChange={(e) => setPassword(e.target.value)}
-// 		value={password}
-// 	/>
-// </div>
-// <div className={styles.FormField}>
-// 	<label htmlFor='confirmPasswordInput'>
-// 		Confirm Password:{" "}
-// 	</label>
-// 	<input
-// 		type='password'
-// 		id='confirmPasswordInput'
-// 		onChange={(e) => setConfirmPassword(e.target.value)}
-// 		value={confirmPassword}
-// 	/>
-// </div>
-
-// <div className={styles.FormDataViewer}>
-// 	<div className={styles.FormDataField}>
-// 		<label>First Name: </label>
-// 		<input type='text' value={firstName} disabled />
-// 	</div>
-// 	<div className={styles.FormDataField}>
-// 		<label>Last Name: </label>
-// 		<input type='text' value={lastName} disabled />
-// 	</div>
-// 	<div className={styles.FormDataField}>
-// 		<label>Email: </label>
-// 		<input type='text' value={emailAddress} disabled />
-// 	</div>
-// 	<div className={styles.FormDataField}>
-// 		<label>Password: </label>
-// 		<input type='text' value={password} disabled />
-// 	</div>
-// 	<div className={styles.FormDataField}>
-// 		<label>Confirm Password: </label>
-// 		<input type='text' value={confirmPassword} disabled />
-// 	</div>
-// </div>

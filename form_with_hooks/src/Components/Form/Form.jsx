@@ -3,38 +3,69 @@ import styles from "./Form.module.css";
 import FormField from "../FormField/FormField";
 
 const Form = (props) => {
+	const validateLength = (
+		inputValue = "",
+		inputFieldLabel = "",
+		{ minimumLength = 0 }
+	) => {
+		if (minimumLength > 0 && inputValue.length < minimumLength)
+			return `${inputFieldLabel} must be at least ${minimumLength} characters!`;
+		return "";
+	};
+
+	const validateLengthAndMatch = (
+		inputValue = "",
+		inputFieldLabel = "",
+		{ minimumLength = 0, matchInputValue = "", matchFieldLabel = "" }
+	) => {
+		if (minimumLength > 0 && inputValue.length < minimumLength)
+			return `${inputFieldLabel} must be at least ${minimumLength} characters!`;
+		if (matchInputValue !== "" && inputValue !== matchInputValue)
+			return `${inputFieldLabel} does not match ${matchFieldLabel}`;
+		return "";
+	};
+	const {
+		firstNameProps,
+		lastNameProps,
+		emailAddrProps,
+		passwordProps,
+		passwordConfProps,
+	} = props.fields;
+	firstNameProps.validation = {
+		validate: validateLength,
+		params: { minimumLength: 2 },
+	};
+	lastNameProps.validation = {
+		validate: validateLength,
+		params: { minimumLength: 2 },
+	};
+	emailAddrProps.validation = {
+		validate: validateLength,
+		params: { minimumLength: 5 },
+	};
+	passwordProps.validation = {
+		validate: validateLengthAndMatch,
+		params: {
+			minimumLength: 8,
+			matchInputValue: passwordConfProps.inputValue,
+			matchFieldLabel: passwordConfProps.labelText,
+		},
+	};
+	passwordConfProps.validation = {
+		validate: validateLengthAndMatch,
+		params: {
+			minimumLength: 8,
+			matchInputValue: passwordProps.inputValue,
+			matchFieldLabel: passwordProps.labelText,
+		},
+	};
 	return (
 		<form className={styles.Form}>
-			<FormField
-				forId={props.forIds[0]}
-				labelText={props.labelTexts[0]}
-				onInputChange={(e) => props.onInputChanges[0](e.target.value)}
-				inputValue={props.inputValues[0]}
-			/>
-			<FormField
-				forId={props.forIds[1]}
-				labelText={props.labelTexts[1]}
-				onInputChange={(e) => props.onInputChanges[1](e.target.value)}
-				inputValue={props.inputValues[1]}
-			/>
-			<FormField
-				forId={props.forIds[2]}
-				labelText={props.labelTexts[2]}
-				onInputChange={(e) => props.onInputChanges[2](e.target.value)}
-				inputValue={props.inputValues[2]}
-			/>
-			<FormField
-				forId={props.forIds[3]}
-				labelText={props.labelTexts[3]}
-				onInputChange={(e) => props.onInputChanges[3](e.target.value)}
-				inputValue={props.inputValues[3]}
-			/>
-			<FormField
-				forId={props.forIds[4]}
-				labelText={props.labelTexts[4]}
-				onInputChange={(e) => props.onInputChanges[4](e.target.value)}
-				inputValue={props.inputValues[4]}
-			/>
+			<FormField fieldProps={firstNameProps} />
+			<FormField fieldProps={lastNameProps} />
+			<FormField fieldProps={emailAddrProps} />
+			<FormField fieldProps={passwordProps} />
+			<FormField fieldProps={passwordConfProps} />
 		</form>
 	);
 };

@@ -13,14 +13,11 @@ const FormDataViewer = (props) => {
 				labelText='Last Name:'
 				valueString={props.lastName}
 			/>
-			<FormDataField
-				labelText='Email:'
-				valueString={props.emailAddress}
-			/>
+			<FormDataField labelText='Email:' valueString={props.emailAddr} />
 			<FormDataField labelText='Password:' valueString={props.password} />
 			<FormDataField
 				labelText='Confirm Password:'
-				valueString={props.confirmPassword}
+				valueString={props.passwordConf}
 			/>
 		</div>
 	);

@@ -18,3 +18,10 @@ div.FormField input {
 	vertical-align: middle;
 	font-size: 2rem;
 }
+/* div.FormField */
+p.errMsg {
+	margin: 0;
+	padding: 0 0 0 25%;
+	font-size: 1.5rem;
+	color: red;
+}
