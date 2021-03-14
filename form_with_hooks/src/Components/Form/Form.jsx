@@ -6,20 +6,33 @@ const Form = (props) => {
 	const validateLength = (
 		inputValue = "",
 		inputFieldLabel = "",
-		{ minimumLength = 0 }
+		{ required = false, minimumLength = 0 }
 	) => {
+		if (inputValue === "") {
+			if (required === true) return `${inputFieldLabel} is required`;
+			else return "";
+		}
 		if (minimumLength > 0 && inputValue.length < minimumLength)
-			return `${inputFieldLabel} must be at least ${minimumLength} characters!`;
+			return `${inputFieldLabel} must be at least ${minimumLength} characters`;
 		return "";
 	};
 
 	const validateLengthAndMatch = (
 		inputValue = "",
 		inputFieldLabel = "",
-		{ minimumLength = 0, matchInputValue = "", matchFieldLabel = "" }
+		{
+			required = false,
+			minimumLength = 0,
+			matchInputValue = "",
+			matchFieldLabel = "",
+		}
 	) => {
+		if (inputValue === "") {
+			if (required === true) return `${inputFieldLabel} is required`;
+			else return "";
+		}
 		if (minimumLength > 0 && inputValue.length < minimumLength)
-			return `${inputFieldLabel} must be at least ${minimumLength} characters!`;
+			return `${inputFieldLabel} must be at least ${minimumLength} characters`;
 		if (matchInputValue !== "" && inputValue !== matchInputValue)
 			return `${inputFieldLabel} does not match ${matchFieldLabel}`;
 		return "";
@@ -41,11 +54,12 @@ const Form = (props) => {
 	};
 	emailAddrProps.validation = {
 		validate: validateLength,
-		params: { minimumLength: 5 },
+		params: { required: true, minimumLength: 5 },
 	};
 	passwordProps.validation = {
 		validate: validateLengthAndMatch,
 		params: {
+			required: true,
 			minimumLength: 8,
 			matchInputValue: passwordConfProps.inputValue,
 			matchFieldLabel: passwordConfProps.labelText,
@@ -54,6 +68,7 @@ const Form = (props) => {
 	passwordConfProps.validation = {
 		validate: validateLengthAndMatch,
 		params: {
+			required: true,
 			minimumLength: 8,
 			matchInputValue: passwordProps.inputValue,
 			matchFieldLabel: passwordProps.labelText,
