@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import styles from "./FormField.module.css";
 
-const FormField = (props) => {
+const FormField = ({ fieldProps }) => {
 	const {
 		forId,
 		labelText,
 		inputValue,
 		setInputValue,
 		validation: { validate, params },
-	} = props.fieldProps;
+	} = fieldProps;
+
 	const [errMsg, setErrMsg] = useState("");
+
 	const onInputChange = (e) => {
 		setInputValue(e.target.value);
 		const eM = validate(e.target.value, labelText, params);

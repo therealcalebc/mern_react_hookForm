@@ -45,13 +45,7 @@ const HookForm = (props) => {
 	return (
 		<>
 			<Form fields={formFieldProps} />
-			<FormDataViewer
-				firstName={firstName}
-				lastName={lastName}
-				emailAddr={emailAddr}
-				password={password}
-				passwordConf={passwordConf}
-			/>
+			<FormDataViewer fields={formFieldProps} />
 		</>
 	);
 };

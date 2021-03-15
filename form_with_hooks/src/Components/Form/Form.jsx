@@ -2,8 +2,16 @@ import React from "react";
 import styles from "./Form.module.css";
 import FormField from "../FormField/FormField";
 
-const Form = (props) => {
-	const validateLength = (
+const Form = ({ fields }) => {
+	const {
+		firstNameProps,
+		lastNameProps,
+		emailAddrProps,
+		passwordProps,
+		passwordConfProps,
+	} = fields;
+
+	const lengthValidator = (
 		inputValue = "",
 		inputFieldLabel = "",
 		{ required = false, minimumLength = 0 }
@@ -17,7 +25,7 @@ const Form = (props) => {
 		return "";
 	};
 
-	const validateLengthAndMatch = (
+	const lengthAndMatchValidator = (
 		inputValue = "",
 		inputFieldLabel = "",
 		{
@@ -37,27 +45,21 @@ const Form = (props) => {
 			return `${inputFieldLabel} does not match ${matchFieldLabel}`;
 		return "";
 	};
-	const {
-		firstNameProps,
-		lastNameProps,
-		emailAddrProps,
-		passwordProps,
-		passwordConfProps,
-	} = props.fields;
+
 	firstNameProps.validation = {
-		validate: validateLength,
+		validate: lengthValidator,
 		params: { minimumLength: 2 },
 	};
 	lastNameProps.validation = {
-		validate: validateLength,
+		validate: lengthValidator,
 		params: { minimumLength: 2 },
 	};
 	emailAddrProps.validation = {
-		validate: validateLength,
+		validate: lengthValidator,
 		params: { required: true, minimumLength: 5 },
 	};
 	passwordProps.validation = {
-		validate: validateLengthAndMatch,
+		validate: lengthAndMatchValidator,
 		params: {
 			required: true,
 			minimumLength: 8,
@@ -66,7 +68,7 @@ const Form = (props) => {
 		},
 	};
 	passwordConfProps.validation = {
-		validate: validateLengthAndMatch,
+		validate: lengthAndMatchValidator,
 		params: {
 			required: true,
 			minimumLength: 8,
@@ -74,6 +76,7 @@ const Form = (props) => {
 			matchFieldLabel: passwordProps.labelText,
 		},
 	};
+
 	return (
 		<form className={styles.Form}>
 			<FormField fieldProps={firstNameProps} />
